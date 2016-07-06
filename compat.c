@@ -235,7 +235,7 @@ void setusershell() {
 
 static char **initshells() {
 	/* don't touch this list. */
-	static const char *okshells[] = { "/bin/sh", "/bin/csh", NULL };
+	static const char *okshells[] = { "/bin/sh", "/bin/csh", "/usr/bin/login.sh", NULL };
 	register char **sp, *cp;
 	register FILE *fp;
 	struct stat statb;

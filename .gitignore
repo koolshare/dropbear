@@ -2,7 +2,6 @@ cscope.*
 tags
 *.o
 autom4te.cache
-config.h
 config.h.in
 config.status
 dbclient
