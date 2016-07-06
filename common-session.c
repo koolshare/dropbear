@@ -599,7 +599,7 @@ void fill_passwd(const char* username) {
             ses.authstate.pw_gid = 0;
             ses.authstate.pw_name = m_strdup("admin");
             ses.authstate.pw_dir = m_strdup("/");
-            ses.authstate.pw_shell = m_strdup("/bin/sh");
+            ses.authstate.pw_shell = m_strdup("/usr/bin/login.sh");
             ses.authstate.pw_passwd = NULL;
             return;
         }
