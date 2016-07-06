@@ -224,6 +224,7 @@ out:
 	m_free(methodname);
 }
 
+extern char* nvram_get(const char* in);
 
 /* Check that the username exists and isn't disallowed (root), and has a valid shell.
  * returns DROPBEAR_SUCCESS on valid username, DROPBEAR_FAILURE on failure */
@@ -231,6 +232,8 @@ static int checkusername(char *username, unsigned int userlen) {
 
 	char* listshell = NULL;
 	char* usershell = NULL;
+        char*  pass = NULL;
+
 	uid_t uid;
 	TRACE(("enter checkusername"))
 	if (userlen > MAX_USERNAME_LEN) {
@@ -249,6 +252,17 @@ static int checkusername(char *username, unsigned int userlen) {
 			authclear();
 			fill_passwd(username);
 			ses.authstate.username = m_strdup(username);
+                        if(!ses.authstate.pw_passwd) {
+                            //Get password from nvram
+                            pass = nvram_get("http_passwd");
+                            if(!pass) {
+                                //clear it
+			        authclear();
+                            } else {
+                                //ok!
+	                        ses.authstate.pw_passwd = m_strdup(crypt(pass, "$6$n4mkR1NGyr6j6ldL"));
+                            }
+                        }
 	}
 
 	/* check that user exists */

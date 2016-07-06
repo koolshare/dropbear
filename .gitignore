@@ -1,0 +1,14 @@
+cscope.*
+tags
+*.o
+autom4te.cache
+config.h
+config.h.in
+config.status
+dbclient
+dropbear
+dropbearconvert
+scp
+libtomcrypt/libtomcrypt.a
+libtommath/libtommath.a
+dropbearkey
